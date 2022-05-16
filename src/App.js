@@ -20,10 +20,10 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     load(search);
-    setSearch('');
+    // setSearch('');
   }
 
   return (

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getPokemon } from './services/fetch-utils';
 import LoadingSpinner from './components/LoadingSpinner';
 import PokemonList from './components/PokemonList';
+import SearchForm from './components/SearchForm';
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -29,10 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
-        <button>Submit</button>
-      </form>
+      <SearchForm handleSubmit={handleSubmit} search={search} setSearch={setSearch} />
       <PokemonList pokemonList={pokemonList} />
       {isLoading && <LoadingSpinner />}
     </div>

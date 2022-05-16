@@ -10,18 +10,19 @@ function App() {
 
   async function load() {
     setIsLoading(true);
-    const pokemon = await getPokemon();
+    const pokemon = await getPokemon(search);
     setPokemon(pokemon.data.results);
     setIsLoading(false);
   }
 
   useEffect(() => {
     load();
-  }, [search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    load();
+    load(search);
     setSearch('');
   }
 

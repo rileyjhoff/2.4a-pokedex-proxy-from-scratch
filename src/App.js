@@ -19,7 +19,7 @@ function App() {
     load();
   }, [search]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     load();
     setSearch('');
@@ -27,12 +27,16 @@ function App() {
 
   return (
     <div className="App">
-      {isLoading && <LoadingSpinner />}
+      <form onSubmit={handleSubmit}>
+        <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
+        <button>Submit</button>
+      </form>
       {pokemon.map((pokemon) => (
         <div key={pokemon._id}>
           <h1>{pokemon.pokemon}</h1>
         </div>
       ))}
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 }

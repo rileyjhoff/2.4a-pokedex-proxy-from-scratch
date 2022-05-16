@@ -2,16 +2,17 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { getPokemon } from './services/fetch-utils';
 import LoadingSpinner from './components/LoadingSpinner';
+import PokemonList from './components/PokemonList';
 
 function App() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   async function load() {
     setIsLoading(true);
     const pokemon = await getPokemon(search);
-    setPokemon(pokemon.data.results);
+    setPokemonList(pokemon.data.results);
     setIsLoading(false);
   }
 
@@ -32,11 +33,7 @@ function App() {
         <input value={search} onChange={(e) => setSearch(e.target.value)}></input>
         <button>Submit</button>
       </form>
-      {pokemon.map((pokemon) => (
-        <div key={pokemon._id}>
-          <h1>{pokemon.pokemon}</h1>
-        </div>
-      ))}
+      <PokemonList pokemonList={pokemonList} />
       {isLoading && <LoadingSpinner />}
     </div>
   );

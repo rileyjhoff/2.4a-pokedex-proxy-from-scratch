@@ -1,4 +1,5 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { getPokemon } from './services/fetch-utils';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -14,6 +15,7 @@ function App() {
     setIsLoading(true);
     const pokemon = await getPokemon(search);
     setPokemonList(pokemon.data.results);
+    console.log(pokemon.data.results);
     setIsLoading(false);
   }
 

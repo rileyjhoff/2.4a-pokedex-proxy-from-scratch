@@ -15,7 +15,6 @@ function App() {
     setIsLoading(true);
     const pokemon = await getPokemon(search);
     setPokemonList(pokemon.data.results);
-    console.log(pokemon.data.results);
     setIsLoading(false);
   }
 
